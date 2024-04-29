@@ -1,0 +1,85 @@
+{
+    "type": "object",
+    "x-simpleapp-config": {
+      "documentType": "acc",
+      "documentName": "account",
+      "isolationType": "org",
+      "uniqueKey": "accNo",
+      "documentTitle": "accTitle",
+      "documentDate": "accDate",
+      "generateDocumentNumber": true,
+      "pageType": "crud",
+      "formulas": [
+        { "jsonPath": "$.details[*]", "formula": "sharelibs.getSubtotal($item)" },
+        {
+          "jsonPath": "$.accTotal",
+          "formula": "sharelibs.getTotal($data.details)"
+        }
+      ],
+ 
+      "additionalAutoCompleteFields": [
+        "accid"
+      ]
+    },
+    "properties": {
+      "_id": { "type": "string" },
+      "created": { "type": "string" },
+      "updated": { "type": "string" },
+      "createdBy": { "type": "string" },
+      "updatedBy": { "type": "string" },
+      "tenantId": { "type": "integer", "default": 1 },
+      "orgId": { "type": "integer", "default": 1 },
+      "branchId": { "type": "integer", "default": 1 },
+      "customer": {
+        "type": "object",
+        "x-foreignkey": "customerID",
+        "properties": {
+          "_id": { "type": "string" },
+          "label": { "type": "string" }
+        }
+      },
+      "accountName":{
+        "type": "string",
+        "examples": ["Joel Mathew"],
+        "format": "documentname"
+      },
+      "accountNo": {
+        "type": "string",
+        "examples": ["SI1111"],
+        "format": "documentno"
+      },
+      "accountDate": { "type": "string", "format": "date" },
+      "accountTitle": {
+        "type": "string",
+        "examples": ["Sales to XYZ"],
+        "minLength": 3
+      },
+      "accountTotal": { "type": "number", "default": 0 },
+      "details": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "invoice": {
+              "type": "object",
+              "x-foreignkey": "invoice",
+              "properties": {
+                "_id": { "type": "string" },
+                "label": { "type": "string" },
+                "defaultAccount": { "type": "string", "default": 0 }
+              }
+            },
+            "accountStatus": { "type": "integer", "default": 1 },
+            "active": { "type": "number", "default": 0 },
+            "balance": { "type": "number", "default": 0 }
+          }
+        }
+      },
+      "description": {
+        "type": "string",
+        "format": "text",
+        "examples": ["Maths Tuition primary 1"]
+      }
+    }
+  }
+  

@@ -1,0 +1,55 @@
+{
+    "type": "object",
+    "x-simpleapp-config": {
+      "documentType": "stud",
+      "documentName": "student",
+      "uniqueKey": "studentid",
+      "documentTitle": "studentName",
+      "generateDocumentNumber": true,
+      "isolationType": "org",
+      "pageType": "crud"    
+    },
+    "additionalAutoCompleteFields": [
+        "studentid"
+      ],
+    "required":["email2"],
+    "properties": {
+      "_id": { "type": "string" },
+      "created": { "type": "string" },
+      "updated": { "type": "string" },
+      "createdBy": { "type": "string" },
+      "updatedBy": { "type": "string" },
+      "tenantId": { "type": "integer", "default": 1 },
+      "orgId": { "type": "integer", "default": 1 },
+      "branchId": { "type": "integer", "default": 1 },
+      
+      "studentName": {
+        "type": "string",
+        "examples": ["Customer 1"],
+        "minLength": 3
+      },
+      "email": {
+        "type": "string",
+        "oneOf": [{ "format": "email" }, { "enum": [""] }]
+      },    
+      "email2": {
+        "type": "string",
+        "oneOf": [{ "format": "email", "minLength":10 }, { "enum": [""] }]
+      },   
+       "tel": {
+        "type": "string",
+        "oneOf": [{ "format": "tel" }, { "enum": [""] }]
+      },
+      "active": { "type": "boolean", "default": true, "examples": [true] },
+      "description": { "type": "string", "format": "text" },
+      "docNoFormat": {
+        "type": "object",
+        "x-foreignkey": "docnoformat",
+        "properties": {
+          "_id": { "type": "string" },
+          "label": { "type": "string" }
+        }
+      }
+    }
+  }
+  

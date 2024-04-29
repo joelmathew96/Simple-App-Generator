@@ -1,0 +1,25 @@
+{
+
+    "jsonschemaFolder":"./jsonschemas",
+    "bpmnFolder":"./workflows/bpmn",
+    "backendFolder":"./backend", 
+    "groupFolder":"./groups",
+    "langFolder":"./lang",
+    "backendPort":"8000",
+    "mongoConnectStr":"mongodb://127.0.0.1:27017/simpleapp",
+    "mongoDbName":"simpleapp",
+    "frontendFolder":"./frontend",
+    "frontendPort":"8080",
+    "printFormatDir":"./printformats",
+    "additionalNestModules":["cloudapi","printapi"],
+    "oauthSetting":{
+        "oauthBaseUrl":"https://keycloak-server-url/",
+        "oauthRealm":"realm-name",
+        "oauthRealmUrl":"https://keycloak-server-url/realms/realm-name",
+        "oauthClient":"client-id",
+        "oauthClientSecret":"client-secret-value",
+        "oauthAuthSecretKey":"my-secret",        
+        "adminRole":"realmadmin"
+
+  }
+}
